@@ -1,0 +1,20 @@
+{
+  "name": "microinteractions",
+  "version": "1.0.0",
+  "description": "prdxn-dev-framework ===================",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "serve": "nodemon -e scss -x 'npm run watch:sass'",
+    "watch:sass": "sass --no-source-map --watch assets/sass/:assets/css/"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "node-sass": "^7.0.1",
+    "nodemon": "^2.0.18"
+  },
+  "dependencies": {
+    "sass": "^1.53.0"
+  }
+}
