@@ -17,12 +17,12 @@ const messageSpan = switchInteractionMainDiv.querySelector(".message");
 const t1 = gsap.timeline();
 const t2 = gsap.timeline();
 
-const changeMessage = (message) => {
-    console.log(message);
+const changeMessageAndTitle = (message, title) => {
     messageSpan.innerText = message;
+    switchJqueryElement.title = title;
 }
 
-t1.to(switchJqueryElement, {width: "80px", duration: 0.5, onComplete: changeMessage, onCompleteParams: [messages[1]]})
+t1.to(switchJqueryElement, {width: "80px", duration: 0.5, onComplete: changeMessageAndTitle, onCompleteParams: [messages[1], switchTitles[2]]})
     .to(switchJqueryElement, {backgroundColor: "grey", ease: "linear", duration: 0.5}, "<")
     .to(switchInteractionMainDiv, {backgroundColor: "lightblue", ease: "linear", duration: 0.5}, "<")
     .set(fill, {border: "6px solid grey", borderRadius: "50%", delay: 0.5})
@@ -54,7 +54,7 @@ const turnOnSwitch = (timer) => {
 
     t2.set(fill, {border: ""})
         .set(fill, {borderTopColor: "transparent"})
-        .to(switchJqueryElement, {width: "150px", duration: 0.5})
+        .to(switchJqueryElement, {width: "150px", duration: 0.5, onComplete: changeMessageAndTitle, onCompleteParams: [messages[2], switchTitles[0]]})
         .to(switchInteractionMainDiv, {backgroundColor: "lightgreen", ease: "linear", duration: 0.5}, "<")
-        .to(switchJqueryElement, {backgroundColor: "green", ease: "linear", duration: 0.5, onComplete: changeMessage, onCompleteParams: [messages[2]]}, "<")
+        .to(switchJqueryElement, {backgroundColor: "green", ease: "linear", duration: 0.5}, "<")
 }
