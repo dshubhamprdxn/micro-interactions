@@ -43,7 +43,7 @@ body {
 }
 .media-button ul li .text {
   width: 0;
-  height: 60px;
+  height: 64px;
   color: #000;
   opacity: 0;
   display: flex;
