@@ -1,0 +1,104 @@
+@use "sass:map";
+
+$theme-colors: (
+  "success": #28a745,
+  "info": #17a2b8,
+  "warning": #ffc107,
+);
+
+body {
+    background: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    max-width: 500px;
+    max-height: 500px;
+    height: auto;
+    width: 100%;
+    overflow: hidden;
+}
+
+.media-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    ul {
+        display: flex;
+        position: relative;
+        height: 300px;
+        li {
+            cursor: pointer;
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translate(-50%, 100%);
+            color: transparent;
+            
+            .svg-container {
+                margin-right: 10px;
+                display: inline-flex;
+                justify-content: center;
+                align-items: center;
+                width: 45px;
+                height: 45px;
+                background: #2535dc;
+                border-radius: 50%;
+            }
+            .text {
+                width: 0;
+                height: 60px;
+                color: #000;
+                opacity: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            svg {
+                vertical-align: super;
+                opacity: 0;
+                width: 24px;
+                height: 24px;
+                fill: #fff;
+            }
+        }
+    }
+
+    button {
+        order: 1;
+        z-index: 1;
+        position: relative;
+        background: #2535dc;
+        display: block;
+        border: none;
+        outline: none;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        color: #fff;
+        font-size: 20px;
+        text-indent: -99999px;
+        &::before,
+        &::after {
+            content: "";
+            float: right;
+            display: block;
+            width: 25px;
+            height: 3px;
+            background: #fff;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) translateZ(0);
+            -webkit-transform: translate(-50%, -50%) translateZ(0);
+        }
+        &::before {
+            transform: translate(-50%, -50%) rotate(90deg) translateZ(0);
+            -webkit-transform: translate(-50%, -50%) rotate(90deg) translateZ(0);
+        }
+    }
+
+}
