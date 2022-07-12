@@ -24,7 +24,7 @@ const l4Common = {
     alignItems: 'center',
     justifyContent: 'center',
     background: '#fff',
-    width: '0',
+    width: '70px',
 };
 
 const svgCommon = {
@@ -35,26 +35,26 @@ const svgCommon = {
     yPercent: -50
 }
 
-t1.fromTo('.btn', { rotation: 0}, { rotation: 860, duration: 2.5})
-.to(l4, { bottom: '100%', duration: 0.5}, "-=2s")
-.to(l3, { bottom: '75%', duration: 0.5}, "-=1.75s")
-.to(l2, { bottom: '50%', duration: 0.5}, "-=1.5s")
-.to(l1, { bottom: '25%', duration: 0.5}, "-=1.25s")
-.fromTo(l4Svg, { opacity: 0, scale: 0},{ opacity: 1, scale: 1 }, "-=1.25s")
-.fromTo(l3Svg, { opacity: 0, scale: 0},{ opacity: 1, scale: 1 }, "-=1s")
-.fromTo(l2Svg, { opacity: 0, scale: 0},{ opacity: 1, scale: 1 }, "-=0.75s")
-.fromTo(l1Svg, { opacity: 0, scale: 0},{ opacity: 1, scale: 1 }, "-=.5s")
-.fromTo(l4, l4Common,{ width: '280px' }, "-=.5s") //40 difference
-.fromTo(l4SvgContainer, svgCommon,{ xPercent: -265 }, "-=0.5s") // same
-.fromTo(l3, l4Common,{ width: '240px' }, "-=.5s")
-.fromTo(l3SvgContainer, svgCommon,{ xPercent: -235 }, "-=0.5s")
-.fromTo(l2, l4Common,{ width: '210px' }, "-=.5s")
-.fromTo(l2SvgContainer, svgCommon,{ xPercent: -205 }, "-=0.5s")
-.fromTo(l1, l4Common,{ width: '180px' }, "-=.5s")
-.fromTo(l1SvgContainer, svgCommon,{ xPercent: -175 }, "-=0.5s")
-.fromTo('.text', {
-    opacity: 0, width: '100%'
-},{ opacity: 1,width: '100%', xPercent: 10 }, "-=0.5s")
+t1.fromTo('.btn', { rotation: 0}, { rotation: 315, duration: 1.5, ease: "power4.inOut"}, "1s")
+.to(l4, { bottom: '100%', duration: 0.5, ease: "power4.Out"}, "-=1s")
+.to(l3, { bottom: '75%', duration: 0.5, ease: "power4.Out"}, "-=0.75s")
+.to(l2, { bottom: '50%', duration: 0.5, ease: "power4.Out"}, "-=0.5s")
+.to(l1, { bottom: '25%', duration: 0.5, ease: "power4.Out"}, "-=0.25s")
+.fromTo(l4Svg, { opacity: 0, scale: 0},{ opacity: 1, scale: 1 }, "-=0.5s")
+.fromTo(l3Svg, { opacity: 0, scale: 0},{ opacity: 1, scale: 1 }, "-=0.4s")
+.fromTo(l2Svg, { opacity: 0, scale: 0},{ opacity: 1, scale: 1 }, "-=0.3s")
+.fromTo(l1Svg, { opacity: 0, scale: 0},{ opacity: 1, scale: 1 }, "-=0.2s")
+// .fromTo(l4, l4Common,{ width: '270px' }) //40 difference
+// .fromTo(l4SvgContainer, svgCommon,{ xPercent: -265 }, "-=0.5s") // same
+// .fromTo(l3, l4Common,{ width: '240px' }, "-=.5s")
+// .fromTo(l3SvgContainer, svgCommon,{ xPercent: -235 }, "-=0.5s")
+// .fromTo(l2, l4Common,{ width: '210px' }, "-=.5s")
+// .fromTo(l2SvgContainer, svgCommon,{ xPercent: -205 }, "-=0.5s")
+// .fromTo(l1, l4Common,{ width: '180px' }, "-=.5s")
+// .fromTo(l1SvgContainer, svgCommon,{ xPercent: -175 }, "-=0.5s")
+// .fromTo('.text', {
+//     opacity: 0, width: '100%'
+// },{ opacity: 1,width: '100%', xPercent: 10 }, "-=0.5s")
 
 t1.pause();
 btn.addEventListener('click', () => {
