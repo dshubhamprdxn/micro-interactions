@@ -16,6 +16,7 @@ const messageSpan = switchInteractionMainDiv.querySelector(".message");
 
 const t1 = gsap.timeline();
 const t2 = gsap.timeline();
+const t3 = gsap.timeline();
 
 const changeMessageAndTitle = (message, title) => {
     messageSpan.innerText = message;
@@ -54,7 +55,7 @@ const turnOnSwitch = () => {
 
     t2.set(fill, {border: ""})
         .set(fill, {borderTopColor: "transparent"})
-        .to(switchHTMLElement, {width: "150px", duration: 0.5, onComplete: changeMessageAndTitle, onCompleteParams: [messages[2], switchTitles[0]]})
+        .to(switchHTMLElement, {width: "150px", duration: 0.5, onComplete: changeMessageAndTitle, onCompleteParams: [messages[2], switchTitles[0]], onReverseComplete: changeMessageAndTitle, onReverseCompleteParams: [messages[1], switchTitles[3]]})
         .to(switchInteractionMainDiv, {backgroundColor: "lightgreen", ease: "linear", duration: 0.5}, "<")
         .to(switchHTMLElement, {backgroundColor: "green", ease: "linear", duration: 0.5, onComplete: changeSwitchValue}, "<")
 }
