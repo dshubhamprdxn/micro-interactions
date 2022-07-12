@@ -23,7 +23,7 @@ const l4Common = {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    background: 'rgba(255,255,255,0)',
+    background: 'rgba(255,255,255,0.1)',
     width: '62px',
 };
 
@@ -46,30 +46,22 @@ t1.fromTo('.btn', { rotation: 0}, { rotation: 315, duration: 1.5, ease: "power4.
 .fromTo(l1Svg, { opacity: 0, scale: 0},{ opacity: 1, scale: 1 }, "-=0.2s")
 // .fromTo(l1SvgContainer, { width: '0',height: '64px' },{ width: '180px',height: '64px' })
 .fromTo(l1SvgContainer, svgCommon,{ xPercent: -160, duration: 0.20 }, "-=0.15s")
-.fromTo(l2SvgContainer, svgCommon,{ xPercent: -195, duration: 0.30 }, "-=0.25s")
-.fromTo(l3SvgContainer, svgCommon,{ xPercent: -225, duration: 0.35 }, "-=0.35s")
-.fromTo(l4SvgContainer, svgCommon,{ xPercent: -255, duration: 0.40 }, "-=0.45s") // same
+.fromTo(l2SvgContainer, svgCommon,{ xPercent: -195, duration: 0.30 }, "-=0.20s")
+.fromTo(l3SvgContainer, svgCommon,{ xPercent: -225, duration: 0.35 }, "-=0.25s")
+.fromTo(l4SvgContainer, svgCommon,{ xPercent: -255, duration: 0.40 }, "-=0.30s") // same
 
 .fromTo(l1, l4Common,{ width: '180px',height: '64px',background: 'rgba(255,255,255, 1)',
-duration: 0.10}, "-=0.25s")
+duration: 0.20}, "-=0.45s")
 .fromTo(l2, l4Common,{ width: '215px',height: '64px',background: 'rgba(255,255,255, 1)',
-duration: 0.15}, "-=0.45s")
+duration: 0.25}, "-=0.40s")
 .fromTo(l3, l4Common,{ width: '245px',height: '64px',background: 'rgba(255,255,255, 1)',
-duration: 0.20}, "-=0.35s")
+duration: 0.30}, "-=0.35s")
 .fromTo(l4, l4Common,{ width: '275px',height: '64px',background: 'rgba(255,255,255, 1)',
-duration: 0.35}, "-=0.25s")
-// .fromTo(l2, l4Common,{ width: '210px' }, "-=.5s")
+duration: 0.40}, "-=0.30s")
 
-
-// .fromTo(l3, l4Common,{ width: '240px' }, "-=.5s")
-
-// .fromTo(l4, l4Common,{ width: '270px' }, "-=.5s") //40 difference
-
-
-
-// .fromTo('.text', {
-//     opacity: 0, width: '100%'
-// },{ opacity: 1,width: '100%', xPercent: 10 }, "-=0.5s")
+.fromTo(`.text`, {
+    opacity: 0, width: '100%'
+},{ opacity: 1,width: '100%', xPercent: 10 }, "-=0.5s")
 
 t1.pause();
 btn.addEventListener('click', () => {
