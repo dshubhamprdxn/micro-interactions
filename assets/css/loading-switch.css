@@ -16,9 +16,6 @@ body {
   transition: background 0.4s;
 }
 
-.switch-interaction-div.off { background: lightcoral; }
-.switch-interaction-div.on { background: lightgreen; }
-
 .switch-interaction-div .switch {
   width: 150px;
   height: 80px;
@@ -28,17 +25,6 @@ body {
   background-color: red;
   align-items: center;
   transition: width 0.5s;
-}
-
-.switch-interaction-div .switch.neutral {
-  width: 80px;
-  background: grey;
-}
-
-.switch-interaction-div .switch.on {
-  width: 150px;
-  background: green;
-  justify-content: end;
 }
 
 .switch-interaction-div .switch input {
@@ -68,27 +54,6 @@ body {
   z-index: 4;
 }
 
-.switch-interaction-div .slider.loading .fill {
-  border: 6px solid;
-  border-radius: 50%;
-  border-color: blue grey grey grey;
-  animation: loading 1.5s linear infinite;
-  animation-fill-mode: forwards;
-  transform: rotate(-45deg);
-}
-
-.switch-interaction-div .slider.loading .fill:nth-child(2) { animation-delay: -0.15s; }
-.switch-interaction-div .slider.loading .fill:nth-child(3) { animation-delay: 0s; }
-
-@keyframes loading {
-  0% {
-      transform: rotate(-45deg);
-  }
-  100% {
-      transform: rotate(315deg);
-  }
-}
-
 .switch-interaction-div .slider .cover-1 {
   width: 80px;
   height: 80px;
@@ -99,56 +64,14 @@ body {
   transform: rotate(-45deg);
 }
 
-@keyframes cover1Animation {
-  0% {
-      border-color: grey transparent transparent transparent;
-  }
-  59% {
-      border-color: grey transparent transparent transparent;
-  }
-  60% {
-      border-color: transparent;
-      z-index: 3;
-  }
-  100% {
-      border-color: transparent;
-      z-index: 3;
-  }
-}
-
-.switch-interaction-div .slider.reverse-loading .fill {
-  border: 6px solid;
-  border-radius: 50%;
-  border-color: blue grey grey grey;
-  animation: anti-clockwise-loading 1.5s linear infinite;
-  animation-fill-mode: forwards;
-  transform: rotate(45deg);
-}
-
-.switch-interaction-div .slider.reverse-loading .fill:nth-child(1) { animation-delay: -0.15s; }
-.switch-interaction-div .slider.reverse-loading .fill:nth-child(2) { animation-delay: 0s; }
-
-@keyframes anti-clockwise-loading {
-  0% {
-      transform: rotate(45deg);
-  }
-  100% {
-      transform: rotate(-315deg);
-  }
-}
-
-.switch-interaction-div .slider.reverse-loading .cover-2 {
+.switch-interaction-div .slider .cover-2 {
   width: 80px;
   height: 80px;
-  border: 6px solid;
   border-radius: 50%;
-  border-color: grey transparent transparent transparent;
   display: block;
   position: absolute;
   z-index: 5;
   transform: rotate(45deg);
-  animation: cover1Animation 0.5s;
-  animation-fill-mode: forwards;
 }
 
 .switch-interaction-div .slider .circle {
