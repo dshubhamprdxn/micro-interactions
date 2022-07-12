@@ -39,17 +39,17 @@ switchHTMLElement.addEventListener("click", function(event) {
         if(!loadingSwitchOn) {
             t1.play();
             let timer = setTimeout(function() {
-                turnOnSwitch(timer);
+                clearTimeout(timer);
+                turnOnSwitch();
             }, 6000);
         } else {
-            // t2.reverse();
+            t2.reverse();
             // t1.reverse();
         }
     }
 });
 
-const turnOnSwitch = (timer) => {
-    clearTimeout(timer);
+const turnOnSwitch = () => {
     t1.kill();
 
     t2.set(fill, {border: ""})
