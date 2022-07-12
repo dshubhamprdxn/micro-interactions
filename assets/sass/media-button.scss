@@ -56,6 +56,11 @@ body {
                 display: flex;
                 justify-content: center;
                 align-items: center;
+                white-space: nowrap;
+                overflow: hidden;
+                span {
+                    display: inline;
+                }
             }
             svg {
                 vertical-align: super;

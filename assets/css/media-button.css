@@ -50,6 +50,11 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.media-button ul li .text span {
+  display: inline;
 }
 .media-button ul li svg {
   vertical-align: super;
