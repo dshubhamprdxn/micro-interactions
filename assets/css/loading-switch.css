@@ -58,6 +58,8 @@ body {
   cursor: pointer;
 }
 
+.switch-interaction-div .slider span { font-size: 0; }
+
 .switch-interaction-div .slider .fill {
   width: 80px;
   height: 80px;
