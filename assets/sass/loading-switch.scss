@@ -1,0 +1,94 @@
+body {
+    margin: 0;
+    font-family: Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  * { box-sizing: border-box; }
+  .main-container { height: 600px; }
+  
+  .switch-interaction-div {
+    width: 100%;
+    height: 600px;
+    display: flex;
+    background: lightcoral;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.4s;
+  }
+  
+  .switch-interaction-div .switch {
+    width: 150px;
+    height: 80px;
+    border-radius: 80px;
+    margin-right: 30px;
+    display: flex;
+    background-color: red;
+    align-items: center;
+    transition: width 0.5s;
+  }
+  
+  .switch-interaction-div .switch input {
+    width: 0;
+    height: 0;
+    position: absolute;
+    opacity: 0;
+  }
+  
+  .switch-interaction-div .slider {
+    width: 80px;
+    height: 80px;
+    display: inline-block;
+    position: relative;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+    cursor: pointer;
+  }
+  
+  .switch-interaction-div .slider span { font-size: 0; }
+  
+  .switch-interaction-div .slider .fill {
+    width: 80px;
+    height: 80px;
+    display: block;
+    position: absolute;
+    z-index: 4;
+  }
+  
+  .switch-interaction-div .slider .cover-1 {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: block;
+    position: absolute;
+    z-index: 5;
+    transform: rotate(-45deg);
+  }
+  
+  .switch-interaction-div .slider .cover-2 {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: block;
+    position: absolute;
+    z-index: 5;
+    transform: rotate(45deg);
+  }
+  
+  .switch-interaction-div .slider .circle {
+    width: 68px;
+    height: 68px;
+    border-radius: 50%;
+    position: absolute;
+    z-index: 3;
+    top: 6px;
+    left: 6px;
+    background: white;
+  }
+  
+  .switch-interaction-div .message { 
+    width: 170px;
+    display: block;
+    color: #222;
+    font-size: 24px;
+    text-transform: capitalize;
+  }
