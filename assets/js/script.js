@@ -38,7 +38,6 @@ t1.pause();
 switchHTMLElement.addEventListener("click", function(event) {
     if(!loadingSwitchButtonIsDisabled) {
         loadingSwitchButtonIsDisabled = true;
-        initialiseAllNeededTweens();
         if(!loadingSwitchOn) {
             t1.play();
             let timer = setTimeout(function() {
@@ -51,24 +50,10 @@ switchHTMLElement.addEventListener("click", function(event) {
             let timer = setTimeout(function() {
                 clearTimeout(timer);
                 turnOffSwitch();
-            }, 8000);
+            }, 4000);
         }
     }
 });
-
-const initialiseAllNeededTweens = () => {
-    if(!loadingSwitchOn) {
-        t1.restart();
-        t1.pause();
-        // t2.restart();
-        // t2.pause();
-    } else {
-        t3.restart();
-        t3.pause();
-        t4.restart();
-        t4.pause();
-    }
-}
 
 const turnOnSwitch = () => {
     t1.pause();
@@ -77,7 +62,8 @@ const turnOnSwitch = () => {
         .set(fill, {borderTopColor: "transparent"})
         .to(switchHTMLElement, {width: "150px", duration: 0.5, onComplete: changeMessageAndTitle, onCompleteParams: [messages[2], switchTitles[0]]})
         .to(switchInteractionMainDiv, {backgroundColor: "lightgreen", ease: "linear", duration: 0.5}, "<")
-        .to(switchHTMLElement, {backgroundColor: "green", ease: "linear", duration: 0.5, onComplete: changeSwitchValue, onReverseComplete: changeMessageAndTitle, onReverseCompleteParams: [messages[1], switchTitles[3]]}, "<")
+        .to(switchHTMLElement, {backgroundColor: "green", ease: "linear", duration: 0.5, onComplete: changeSwitchValue, onReverseComplete: changeMessageAndTitle, onReverseCompleteParams: [messages[1], switchTitles[3]]}, "<");
+    t2.play();
 }
 
 const changeSwitchValue = () => {
@@ -92,6 +78,7 @@ const playOffAnimation = () => {
         .set(cover2, {borderTopColor: "grey", rotation: 45})
         .to(fill, {rotation: -315, duration: 1.5, repeat: -1, delay: 0.5})
         .to(cover2, {borderTopColor: "transparent", duration: 0}, "<0.3s");
+    t3.play();
 }
 
 const turnOffSwitch = () => {
@@ -101,5 +88,6 @@ const turnOffSwitch = () => {
         .set(fill, {borderTopColor: "transparent"})
         .to(switchHTMLElement, {width: "150px", duration: 0.5, onComplete: changeMessageAndTitle, onCompleteParams: [messages[0], switchTitles[1]]})
         .to(switchInteractionMainDiv, {backgroundColor: "lightcoral", ease: "linear", duration: 0.5}, "<")
-        .to(switchHTMLElement, {backgroundColor: "red", ease: "linear", duration: 0.5, onComplete: changeSwitchValue}, "<")
+        .to(switchHTMLElement, {backgroundColor: "red", ease: "linear", duration: 0.5, onComplete: changeSwitchValue}, "<");
+    t4.play();
 }
