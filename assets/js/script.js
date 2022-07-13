@@ -17,7 +17,7 @@ const t2 = gsap.timeline();
 const t3 = gsap.timeline();
 const t4 = gsap.timeline();
 
-const changeMessageAndTitle = (message) => {
+const changeMessage = (message) => {
     messageSpan.innerText = message;
 }
 
@@ -41,8 +41,8 @@ const playT4 = () => {
 }
 
 t1.pause();
-t1.to(switchHTMLElement, {width: "80px", duration: 0.5, onComplete: changeMessageAndTitle, onCompleteParams: [messages[1]], onReverseComplete: changeSwitchValue})
-    .to(switchHTMLElement, {backgroundColor: "grey", ease: "linear", duration: 0.5, onReverseComplete: changeMessageAndTitle, onReverseCompleteParams: [messages[0]]}, "<")
+t1.to(switchHTMLElement, {width: "80px", duration: 0.5, onComplete: changeMessage, onCompleteParams: [messages[1]], onReverseComplete: changeSwitchValue})
+    .to(switchHTMLElement, {backgroundColor: "grey", ease: "linear", duration: 0.5, onReverseComplete: changeMessage, onReverseCompleteParams: [messages[0]]}, "<")
     .to(switchInteractionMainDiv, {backgroundColor: "lightblue", ease: "linear", duration: 0.5, onComplete: playT2}, "<")
     .set(fill, {border: ""})
     .set(fill, {borderTopColor: "transparent"});
@@ -58,9 +58,9 @@ t2.set(fill, {border: "6px solid grey", borderRadius: "50%", delay: 0.5})
 t3.pause();
 t3.set(fill, {border: ""})
     .set(fill, {borderTopColor: "transparent"})
-    .to(switchHTMLElement, {width: "150px", duration: 0.5, onComplete: changeMessageAndTitle, onCompleteParams: [messages[2]], onReverseComplete: playT4})
+    .to(switchHTMLElement, {width: "150px", duration: 0.5, onComplete: changeMessage, onCompleteParams: [messages[2]], onReverseComplete: playT4})
     .to(switchInteractionMainDiv, {backgroundColor: "lightgreen", ease: "linear", duration: 0.5}, "<")
-    .to(switchHTMLElement, {backgroundColor: "green", ease: "linear", duration: 0.5, onComplete: changeSwitchValue, onReverseComplete: changeMessageAndTitle, onReverseCompleteParams: [messages[1]]}, "<");
+    .to(switchHTMLElement, {backgroundColor: "green", ease: "linear", duration: 0.5, onComplete: changeSwitchValue, onReverseComplete: changeMessage, onReverseCompleteParams: [messages[1]]}, "<");
 
 t4.pause();
 t4.set(fill, {border: "6px solid grey", borderRadius: "50%", rotation: 45, delay: 0.5})
