@@ -49,10 +49,10 @@ t1.to(switchHTMLElement, {width: "80px", duration: 0.5, onComplete: changeMessag
 
 t2.pause();
 t2.set(fill, {border: "6px solid grey", borderRadius: "50%", delay: 0.5})
-    .set(fill, {borderTopColor: "blue", rotation: -45, delay: 0.5})
+    .set(fill, {borderTopColor: "blue", rotation: -45})
     .set(cover1, {border: "6px solid transparent"})
     .set(cover1, {borderTopColor: "grey", rotation: -45})
-    .to(fill, {rotation: 315, duration: 1.5, repeat: -1})
+    .to(fill, {rotation: 315, duration: 1.5, repeat: -1, delay: 0.5})
     .to(cover1, {borderTopColor: "transparent"}, "<0.3s");
 
 t3.pause();
@@ -85,7 +85,7 @@ switchHTMLElement.addEventListener("click", function(event) {
                 clearTimeout(timer);
                 t4.pause();
                 t1.reverse();
-            }, 4000);
+            }, 5000);
         }
     }
 });
