@@ -7,7 +7,7 @@ $theme-colors: (
 );
 
 body {
-    background: #000;
+    background: #e9eaff;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -29,7 +29,7 @@ body {
     ul {
         display: flex;
         position: relative;
-        height: 300px;
+        height: 330px;
         li {
             cursor: pointer;
             position: absolute;
@@ -39,23 +39,28 @@ body {
             color: transparent;
             
             .svg-container {
-                margin-right: 10px;
                 display: inline-flex;
                 justify-content: center;
                 align-items: center;
-                width: 45px;
-                height: 45px;
+                width: 52px;
+                height: 52px;
                 background: #2535dc;
                 border-radius: 50%;
             }
             .text {
                 width: 0;
-                height: 60px;
+                height: 64px;
                 color: #000;
+                font-size: 20px;
                 opacity: 0;
                 display: flex;
                 justify-content: center;
                 align-items: center;
+                white-space: nowrap;
+                overflow: hidden;
+                span {
+                    display: inline;
+                }
             }
             svg {
                 vertical-align: super;
@@ -75,8 +80,8 @@ body {
         display: block;
         border: none;
         outline: none;
-        width: 60px;
-        height: 60px;
+        width: 75px;
+        height: 75px;
         border-radius: 50%;
         color: #fff;
         font-size: 20px;
@@ -86,8 +91,9 @@ body {
             content: "";
             float: right;
             display: block;
-            width: 25px;
-            height: 3px;
+            width: 30px;
+            height: 4px;
+            border-radius: 2px;
             background: #fff;
             position: absolute;
             top: 50%;
