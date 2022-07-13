@@ -87,6 +87,15 @@ body {
   
   .switch-interaction-div .message { 
     width: 170px;
+    position: relative;
+  }
+  
+  .switch-interaction-div .message span {
+    display: none;
+    position: relative;
+  }
+  
+  .switch-interaction-div .message .current-message {
     display: block;
     color: #222;
     font-size: 24px;
