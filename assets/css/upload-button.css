@@ -11,15 +11,10 @@
   font-weight: 500;
   align-items: center;
 }
-
-.uploading {
-  display: none;
-}
-
-.upload {
+.text-container .upload {
   border: none;
   width: 100px;
-  margin: 01%;
+  margin: 1%;
   height: 80%;
   border-radius: 10px;
   background-color: orange;
@@ -27,8 +22,17 @@
   font-size: 18px;
   font-weight: 500;
 }
-
-.completed {
+.text-container .loader {
+  width: 0%;
+  display: none;
+  border-radius: 10px;
+  height: 8%;
+  position: absolute;
+  bottom: 0;
+  background: black;
+  text-align: center;
+}
+.text-container .loader .completed {
   width: 100%;
   height: 100%;
   border-radius: 10px;
@@ -41,18 +45,6 @@
   text-align: center;
   visibility: hidden;
 }
-
-.loader {
-  width: 0%;
-  display: none;
-  border-radius: 10px;
-  height: 8%;
-  position: absolute;
-  bottom: 0;
-  background: black;
-  text-align: center;
-}
-
-.file-name{
+.text-container .file-name {
   margin: 0 1%;
 }
