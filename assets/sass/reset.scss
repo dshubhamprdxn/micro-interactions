@@ -1,6 +1,8 @@
+@charset "utf-8";
 /* ==========================================================================
    1. CSS Reset Code
    ========================================================================== */
+
 /* 1.1. Eric Meyers Reset
    http://meyerweb.com/eric/tools/css/reset/
    v2.0 | 20110126
@@ -28,22 +30,17 @@ footer, header, hgroup, menu, nav, section {
 }
 
 /* Force scrollbar */
-html {
-  overflow-y: scroll;
-}
+html { overflow-y: scroll; }
 
 /* Align radios and text inputs with their label */
-input[type=radio] {
-  vertical-align: text-bottom;
-}
+
+input[type='radio'] { vertical-align: text-bottom; }
 
 /* Hand cursor on clickable input elements */
 label,
-input[type=button],
-input[type=submit],
-button {
-  cursor: pointer;
-}
+input[type='button'],
+input[type='submit'],
+button { cursor: pointer; }
 
 strong {
   font-weight: bold;
@@ -51,9 +48,7 @@ strong {
   font-size: inherit;
 }
 
-em {
-  font-style: italic;
-}
+em { font-style: italic; }
 
 img {
   width: 100%;
@@ -69,29 +64,20 @@ sup {
   line-height: 0;
 }
 
-sup {
-  top: -0.7em;
-}
-
-sub {
-  bottom: -0.25em;
-}
+sup { top: -.7em; }
+sub { bottom: -.25em; }
 
 /* 1.2. Clear Fix
    ========================== */
+
 .cf:before,
 .cf:after {
   display: table;
   content: " ";
 }
 
-.cf:after {
-  clear: both;
-}
-
-.cf {
-  *zoom: 1;
-}
+.cf:after { clear: both; }
+.cf { *zoom: 1; }
 
 /*for all*/
 body {
@@ -99,53 +85,35 @@ body {
   font-family: sans-serif;
 }
 
-a {
+a { 
   display: inline-block;
-  text-decoration: none;
+  text-decoration: none; 
 }
 
 li {
   display: inline-block;
   list-style-type: none;
 }
-
 /* Common styling */
-.grey {
-  color: #666;
-}
-
-.cap {
-  text-transform: capitalize;
-}
-
-.up {
-  text-transform: uppercase;
-}
-
-.center {
-  text-align: center;
-}
-
-.bold {
-  font-weight: bold;
-}
-
-.transition {
-  transition: 1s all ease;
-}
+.grey { color: #666; }
+.cap { text-transform: capitalize; }
+.up { text-transform: uppercase; }
+.center { text-align: center; }
+.bold { font-weight: bold; }
+.transition { transition: 1s all ease; }
 
 /*for wrapper*/
 .wrapper {
   max-width: 1350px;
-  width: 86%;
+  width: 86%; 
   margin: 0 auto;
 }
 
 /*kill the transitions on any descendant elements of .notransition*/
-.notransition * {
-  -webkit-transition: none !important;
-  -moz-transition: none !important;
-  -o-transition: none !important;
-  -ms-transition: none !important;
-  transition: none !important;
-}
+.notransition * { 
+  -webkit-transition: none !important; 
+  -moz-transition: none !important; 
+  -o-transition: none !important; 
+  -ms-transition: none !important; 
+  transition: none !important; 
+} 
