@@ -38,6 +38,7 @@ t1.pause();
 switchHTMLElement.addEventListener("click", function(event) {
     if(!loadingSwitchButtonIsDisabled) {
         loadingSwitchButtonIsDisabled = true;
+        initialiseAllNeededTweens();
         if(!loadingSwitchOn) {
             t1.play();
             let timer = setTimeout(function() {
@@ -54,6 +55,20 @@ switchHTMLElement.addEventListener("click", function(event) {
         }
     }
 });
+
+const initialiseAllNeededTweens = () => {
+    if(!loadingSwitchOn) {
+        t1.restart();
+        t1.pause();
+        // t2.restart();
+        // t2.pause();
+    } else {
+        t3.restart();
+        t3.pause();
+        t4.restart();
+        t4.pause();
+    }
+}
 
 const turnOnSwitch = () => {
     t1.pause();
@@ -85,6 +100,6 @@ const turnOffSwitch = () => {
     t4.set(fill, {border: ""})
         .set(fill, {borderTopColor: "transparent"})
         .to(switchHTMLElement, {width: "150px", duration: 0.5, onComplete: changeMessageAndTitle, onCompleteParams: [messages[0], switchTitles[1]]})
-        .to(switchInteractionMainDiv, {backgroundColor: "lightred", ease: "linear", duration: 0.5}, "<")
+        .to(switchInteractionMainDiv, {backgroundColor: "lightcoral", ease: "linear", duration: 0.5}, "<")
         .to(switchHTMLElement, {backgroundColor: "red", ease: "linear", duration: 0.5, onComplete: changeSwitchValue}, "<")
 }
