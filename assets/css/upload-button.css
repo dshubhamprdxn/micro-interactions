@@ -49,7 +49,8 @@
 .text-container .loader {
   width: 0%;
   display: none;
-  border-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
   height: 8%;
   position: absolute;
   bottom: 0;
@@ -71,4 +72,8 @@
 }
 .text-container .file-name {
   margin: 0 1%;
+}
+.text-container .file-name .attachment {
+  max-width: 30px;
+  max-height: 30px;
 }
