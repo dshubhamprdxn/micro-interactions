@@ -1,0 +1,58 @@
+.text-container {
+  width: 450px;
+  height: 70px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  margin: 50px auto;
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+  font-size: 18px;
+  font-weight: 500;
+  align-items: center;
+}
+
+.uploading {
+  display: none;
+}
+
+.upload {
+  border: none;
+  width: 100px;
+  margin: 01%;
+  height: 80%;
+  border-radius: 10px;
+  background-color: orange;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.completed {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  display: none;
+  background: #000;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  visibility: hidden;
+}
+
+.loader {
+  width: 0%;
+  display: none;
+  border-radius: 10px;
+  height: 8%;
+  position: absolute;
+  bottom: 0;
+  background: black;
+  text-align: center;
+}
+
+.file-name{
+  margin: 0 1%;
+}
