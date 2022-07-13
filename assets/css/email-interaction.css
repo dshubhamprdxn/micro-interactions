@@ -8,12 +8,12 @@ body {
 }
 
 .main-container {
-  height: 600px;
-  padding-top: 100px;
+  height: 100vh;
   background: lightgray;
 }
 
 form {
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
