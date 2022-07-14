@@ -18,7 +18,6 @@ const rule = CSSRulePlugin.getRule(".email-interactive-response.correct::before"
 const t1 = gsap.timeline();
 const t2 = gsap.timeline();
 const t3 = gsap.timeline();
-const t4 = gsap.timeline();
 
 emailIDInput.addEventListener("change", function(event) {
     validateForm();
@@ -86,7 +85,6 @@ const validateForm = () => {
             }
         }
     }
-    
 }
 
 const playCorrectAnimation = () => {
