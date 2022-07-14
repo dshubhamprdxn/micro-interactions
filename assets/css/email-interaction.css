@@ -75,6 +75,7 @@ form {
   font-size: 18px;
   transform: translate(0, -50%);
   transition: top 0.4s;
+  user-select: none;
 }
 
 .email-div #email-id:focus ~ .email-message {
@@ -169,6 +170,38 @@ form {
 .email-div .email-interactive-response.incorrect::before {
   content: "\f071";
   color: white;
+}
+
+.email-div .circle-div {
+  width: 120px;
+  height: 100%;
+  display: none;
+  position: absolute;
+  z-index: 4;
+  top: 0;
+  right: 0;
+}
+
+.email-div .circle-div span {
+  border: 5px solid white;
+  border-radius: 50%;
+  display: block;
+  position: absolute;
+  z-index: 5;
+  top: 50%;
+  left: 50%;
+  font-size: 0;
+  transform: translate(-50%, -50%);
+}
+
+.email-div .circle-div .circle-1 {
+  width: 50px;
+  height: 50px;
+}
+
+.email-div .circle-div .circle-2 {
+  width: 50px;
+  height: 50px;
 }
 
 .submit-div {
