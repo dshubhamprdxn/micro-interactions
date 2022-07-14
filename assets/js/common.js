@@ -1,3 +1,10 @@
+const hasClass = (element, className) => {
+    if(element.classList.contains(className)) {
+        return true;
+    }
+    return false;
+}
+
 const addClass = (element, className) => {
     if(!element.classList.contains(className)) {
         element.classList.add(className);
