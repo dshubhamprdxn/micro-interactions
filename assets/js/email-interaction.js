@@ -1,6 +1,6 @@
 gsap.registerPlugin(CSSRulePlugin);
 
-const emailIsValid = true;
+const emailIsValid = false;
 const cssClasses = ["correct", "incorrect", "flex", "correct-before", "align-left"];
 const errorMessages = ["Email", "Enter Email!", "Email format invalid"];
 
@@ -12,6 +12,10 @@ const emailIDInput = emailDiv.querySelector("#email-id");
 const emailMessage = emailDiv.querySelector(".email-message");
 const emailCorrectResponse = emailDiv.querySelector(".email-interactive-response.correct");
 const emailIncorrectResponse = emailDiv.querySelector(".email-interactive-response.incorrect");
+
+const circleDiv = emailDiv.querySelector(".circle-div");
+const circle1 = circleDiv.querySelector(".circle-1");
+const circle2 = circleDiv.querySelector(".circle-2");
 
 const rule = CSSRulePlugin.getRule(".email-interactive-response.correct::before");
 
@@ -64,11 +68,23 @@ t2.to(emailIncorrectResponse, {width: "2px", duration: 0})
     .set(emailDiv, {x: ""});
 
 t3.pause();
-t3.to(emailIncorrectResponse, {width: "50%", duration: 0.4}, ">")
-    .to(emailIncorrectResponse, {left: "0", duration: 0.4}, ">")
+t3.set(circleDiv, {display: "block"})
+    .to(circle1, {width: "30px", height: "30px", borderWidth: "10px", duration: 0.2}, ">")
+    .to(circle2, {width: "15px", height: "15px", borderWidth: "10px", duration: 0.2}, "<")
+    .to(circle1, {width: "95px", height: "95px", borderWidth: "1px", duration: 0.35}, ">")
+    .to(circle2, {width: "60px", height: "60px", borderWidth: "4px", duration: 0.35}, "<")
+    .to(circle1, {borderWidth: "0", duration: 0.1}, ">")
+    .to(circle2, {borderWidth: "0", duration: 0.1}, "<")
+    .to(emailIncorrectResponse, {width: "50%", duration: 0.4}, ">")
+    .to(emailIncorrectResponse, {right: "100%", duration: 0.4}, ">")
     .set(emailMessage, {innerText: errorMessages[0]})
-    .to(emailIncorrectResponse, {left: "-50%", duration: 0.4}, ">")
-    .set(emailIncorrectResponse, {width: "", left: "", onComplete: clearIncorrectAnimation});
+    .to(emailIncorrectResponse, {right: "150%", duration: 0.4}, ">")
+
+    // reset set properties in GSAP
+    .set(circleDiv, {display: ""})
+    .set(circle1, {width: "", height: "", borderWidth: ""})
+    .set(circle2, {width: "", height: "", borderWidth: ""})
+    .set(emailIncorrectResponse, {width: "", right: "", onComplete: clearIncorrectAnimation});
 
 const validateForm = () => {
     const emailValue = emailIDInput.value;
