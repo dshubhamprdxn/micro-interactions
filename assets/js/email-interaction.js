@@ -28,6 +28,21 @@ form.addEventListener("submit", function(event) {
     validateForm(event);
 });
 
+emailCorrectResponse.addEventListener("click", function(event) {
+    clearCorrectAnimation();
+});
+
+emailIncorrectResponse.addEventListener("click", function(event) {
+    t3.restart();
+});
+
+const clearIncorrectAnimation = () => {
+    emailIDInput.value = "";
+    removeClass(emailIncorrectResponse, cssClasses[2]);
+    removeClass(emailIDInput, cssClasses[1]);
+    removeClass(emailMessage, cssClasses[1]);
+}
+
 t1.pause();
 t1.set(emailMessage, {innerText: errorMessages[0]})
     .set(rule, { cssRule: {display: "none", opacity: 0} })
@@ -41,6 +56,14 @@ t2.to(emailIncorrectResponse, {width: "2px", duration: 0})
     .to(emailIncorrectResponse, {width: "120px", duration: 0.5})
     .to(emailDiv, {x:"+=20", yoyo: true, repeat: 4, duration: 0.1}, ">")
     .to(emailDiv, {x:"-=20", yoyo: true, repeat: 4, duration: 0.1}, "<")
+    .set(emailDiv, {x: ""});
+
+t3.pause();
+t3.to(emailIncorrectResponse, {width: "50%", duration: 0.4}, ">")
+    .to(emailIncorrectResponse, {left: "0", duration: 0.4}, ">")
+    .set(emailMessage, {innerText: errorMessages[0]})
+    .to(emailIncorrectResponse, {left: "-50%", duration: 0.4}, ">")
+    .set(emailIncorrectResponse, {width: "", left: "", onComplete: clearIncorrectAnimation});
 
 const validateForm = () => {
     const emailValue = emailIDInput.value;
