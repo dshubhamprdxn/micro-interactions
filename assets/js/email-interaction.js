@@ -1,6 +1,6 @@
 gsap.registerPlugin(CSSRulePlugin);
 
-const emailIsValid = false;
+const emailIsValid = true;
 const cssClasses = ["correct", "incorrect", "flex", "correct-before", "align-left"];
 const errorMessages = ["Email", "Enter Email!", "Email format invalid"];
 
@@ -29,7 +29,7 @@ form.addEventListener("submit", function(event) {
 });
 
 emailCorrectResponse.addEventListener("click", function(event) {
-    clearCorrectAnimation();
+    t1.reverse();
 });
 
 emailIncorrectResponse.addEventListener("click", function(event) {
@@ -43,15 +43,21 @@ const clearIncorrectAnimation = () => {
     removeClass(emailMessage, cssClasses[1]);
 }
 
+const clearCorrectAnimation = () => {
+    emailIDInput.value = "";
+    removeClass(emailIDInput, cssClasses[0]);
+    removeClass(emailCorrectResponse, cssClasses[2]);
+}
+
 t1.pause();
-t1.set(emailMessage, {innerText: errorMessages[0]})
+t1.set(emailCorrectResponse, {width: "", onReverseComplete: clearCorrectAnimation})
+    .set(emailMessage, {innerText: errorMessages[0]})
     .set(rule, { cssRule: {display: "none", opacity: 0} })
     .to(emailCorrectResponse, {width: "2px", duration: 0})
     .to(emailCorrectResponse, {width: "120px", duration: 0.5}, ">")
     .fromTo(rule, { cssRule: {display: ""} }, { cssRule: {opacity: 1, duration: 0.4} }, ">");
 
 t2.pause();
-
 t2.to(emailIncorrectResponse, {width: "2px", duration: 0})
     .to(emailIncorrectResponse, {width: "120px", duration: 0.5})
     .to(emailDiv, {x:"+=20", yoyo: true, repeat: 4, duration: 0.1}, ">")
