@@ -1,6 +1,6 @@
 gsap.registerPlugin(CSSRulePlugin);
 
-const emailIsValid = true;
+const emailIsValid = false;
 const cssClasses = ["correct", "incorrect", "flex", "correct-before", "align-left"];
 const errorMessages = ["Email", "Enter Email!", "Email format invalid"];
 
@@ -65,10 +65,10 @@ t2.to(emailIncorrectResponse, {width: "2px", duration: 0})
 
 t3.pause();
 t3.to(emailIncorrectResponse, {width: "50%", duration: 0.4}, ">")
-    .to(emailIncorrectResponse, {left: "0", duration: 0.4}, ">")
+    .to(emailIncorrectResponse, {right: "100%", duration: 0.4}, ">")
     .set(emailMessage, {innerText: errorMessages[0]})
-    .to(emailIncorrectResponse, {left: "-50%", duration: 0.4}, ">")
-    .set(emailIncorrectResponse, {width: "", left: "", onComplete: clearIncorrectAnimation});
+    .to(emailIncorrectResponse, {right: "150%", duration: 0.4}, ">")
+    .set(emailIncorrectResponse, {width: "", right: "", onComplete: clearIncorrectAnimation});
 
 const validateForm = () => {
     const emailValue = emailIDInput.value;
