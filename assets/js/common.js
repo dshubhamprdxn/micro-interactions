@@ -11,5 +11,13 @@ const removeClass = (element, className) => {
 }
 
 const changeElementInnerText = (element, messageValue) => {
-    element.innerText = messageValue;
+    if(element != undefined) {
+        if(messageValue != undefined) {
+            element.innerText = messageValue;
+        } else {
+            console.log("Message value not provided!");
+        }
+    } else {
+        console.log("Element not present!");
+    }
 }
