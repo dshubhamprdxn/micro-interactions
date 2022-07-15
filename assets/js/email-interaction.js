@@ -103,8 +103,8 @@ t3.set(circleDiv, {display: "block"})
 /**
  * Add your email validation function here and return below variable.
  * @property {boolean} emailIsValid - Set "emailIsValid" to true for the "Correct animation" and to false for "Incorrect animation". 
- * @property {boolean} emailIsEmpty - Set "emailIsValid" to false & "emailIsEmpty" to true to play "Incorrect animation" for empty input. 
-/* 
+ * @property {boolean} emailIsEmpty - Set "emailIsValid" to false & "emailIsEmpty" to true to play "Incorrect animation" for empty input.
+ */ 
 
 const emailValidation = () => {
     // Replace this with your own emailValidation logic
