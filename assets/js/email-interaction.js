@@ -1,6 +1,5 @@
 gsap.registerPlugin(CSSRulePlugin);
 
-const emailIsValid = true;
 const cssClasses = ["correct", "incorrect", "flex"];
 const errorMessages = ["Email", "Enter Email!", "Email format invalid"];
 
@@ -39,11 +38,14 @@ emailIncorrectResponse.addEventListener("click", function(event) {
     t3.restart();
 });
 
+const hideIncorrectAnimation = () => {
+    removeClass(emailIncorrectResponse, cssClasses[2]);
+}
+
 const clearIncorrectAnimation = (clearInput) => {
     if(clearInput) {
         emailIDInput.value = "";
     }
-    removeClass(emailIncorrectResponse, cssClasses[2]);
     removeClass(emailIDInput, cssClasses[1]);
     removeClass(emailMessage, cssClasses[1]);
 }
@@ -82,42 +84,40 @@ t3.set(circleDiv, {display: "block"})
     .to(circle2, {borderWidth: "0", duration: 0.1}, "<")
     .to(emailIncorrectResponse, {width: "50%", duration: 0.4}, ">")
     .to(emailIncorrectResponse, {right: "100%", duration: 0.4}, ">")
-    .set(emailMessage, {innerText: errorMessages[0]})
+    .to(emailMessage, {innerText: errorMessages[0], duration: 0, onComplete: clearIncorrectAnimation, onCompleteParams: [true]}, "<0.2s")
     .to(emailIncorrectResponse, {right: "150%", duration: 0.4}, ">")
 
     // reset the above set properties of GSAP
     .set(circleDiv, {display: ""})
     .set(circle1, {width: "", height: "", borderWidth: ""})
     .set(circle2, {width: "", height: "", borderWidth: ""})
-    .set(emailIncorrectResponse, {width: "", right: "", onComplete: clearIncorrectAnimation, onCompleteParams: [true]});
+    .set(emailIncorrectResponse, {width: "", right: "", onComplete: hideIncorrectAnimation});
+
+const emailValidation = () => {
+    const emailIsValid = true;
+    const emailIsEmpty = false;
+
+    return {emailIsValid, emailIsEmpty};
+}
 
 const validateForm = (event) => {
     if(event != undefined) {
         event.preventDefault();
     }
-    const emailValue = emailIDInput.value;
-    if(emailValue == "" || emailValue == null) {
+    if(emailValidation().emailIsValid) {
+        if(!hasClass(emailCorrectResponse, cssClasses[2])) {
+            if(hasClass(emailIncorrectResponse, cssClasses[2])) {
+                clearIncorrectAnimation(false);
+                hideIncorrectAnimation();
+            }
+            playCorrectAnimation();
+        } 
+    } else {
         if(!hasClass(emailIncorrectResponse, cssClasses[2])) {
             if(hasClass(emailCorrectResponse, cssClasses[2])) {
                 clearCorrectAnimation(false);
             }
-            playIncorrectAnimation(true);
-        }
-    } else {
-        if(emailIsValid) {
-            if(!hasClass(emailCorrectResponse, cssClasses[2])) {
-                if(hasClass(emailIncorrectResponse, cssClasses[2])) {
-                    clearIncorrectAnimation(false);
-                }
-                playCorrectAnimation();
-            } 
-        } else {
-            if(!hasClass(emailIncorrectResponse, cssClasses[2])) {
-                if(hasClass(emailCorrectResponse, cssClasses[2])) {
-                    clearCorrectAnimation(false);
-                }
-                playIncorrectAnimation(false);
-            }
+            playIncorrectAnimation(emailValidation().emailIsEmpty);
         }
     }
 }
