@@ -39,21 +39,25 @@ emailIncorrectResponse.addEventListener("click", function(event) {
     t3.restart();
 });
 
-const clearIncorrectAnimation = () => {
-    emailIDInput.value = "";
+const clearIncorrectAnimation = (clearInput) => {
+    if(clearInput) {
+        emailIDInput.value = "";
+    }
     removeClass(emailIncorrectResponse, cssClasses[2]);
     removeClass(emailIDInput, cssClasses[1]);
     removeClass(emailMessage, cssClasses[1]);
 }
 
-const clearCorrectAnimation = () => {
-    emailIDInput.value = "";
+const clearCorrectAnimation = (clearInput) => {
+    if(clearInput) {
+        emailIDInput.value = "";
+    }
     removeClass(emailIDInput, cssClasses[0]);
     removeClass(emailCorrectResponse, cssClasses[2]);
 }
 
 t1.pause();
-t1.set(rule, { cssRule: {opacity: "",}, onReverseComplete: clearCorrectAnimation })
+t1.set(rule, { cssRule: {opacity: "",}, onReverseComplete: clearCorrectAnimation, onReverseCompleteParams: [true] })
     .set(emailCorrectResponse, {width: ""})
     .set(emailMessage, {innerText: errorMessages[0]})
     .to(emailCorrectResponse, {width: "2px", duration: 0})
@@ -85,19 +89,33 @@ t3.set(circleDiv, {display: "block"})
     .set(circleDiv, {display: ""})
     .set(circle1, {width: "", height: "", borderWidth: ""})
     .set(circle2, {width: "", height: "", borderWidth: ""})
-    .set(emailIncorrectResponse, {width: "", right: "", onComplete: clearIncorrectAnimation});
+    .set(emailIncorrectResponse, {width: "", right: "", onComplete: clearIncorrectAnimation, onCompleteParams: [true]});
 
-const validateForm = () => {
+const validateForm = (event) => {
+    if(event != undefined) {
+        event.preventDefault();
+    }
     const emailValue = emailIDInput.value;
     if(emailValue == "" || emailValue == null) {
-        playIncorrectAnimation(true);
+        if(!hasClass(emailIncorrectResponse, cssClasses[2])) {
+            if(hasClass(emailCorrectResponse, cssClasses[2])) {
+                clearCorrectAnimation(false);
+            }
+            playIncorrectAnimation(true);
+        }
     } else {
         if(emailIsValid) {
             if(!hasClass(emailCorrectResponse, cssClasses[2])) {
+                if(hasClass(emailIncorrectResponse, cssClasses[2])) {
+                    clearIncorrectAnimation(false);
+                }
                 playCorrectAnimation();
-            }
+            } 
         } else {
             if(!hasClass(emailIncorrectResponse, cssClasses[2])) {
+                if(hasClass(emailCorrectResponse, cssClasses[2])) {
+                    clearCorrectAnimation(false);
+                }
                 playIncorrectAnimation(false);
             }
         }
