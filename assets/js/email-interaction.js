@@ -22,19 +22,19 @@ const t1 = gsap.timeline(); // Timeline for Playing/Clearing(Reverse) Correct an
 const t2 = gsap.timeline(); // Timeline for Playing Incorrect animation
 const t3 = gsap.timeline(); // Timeline for Clearing Incorrect animation
 
-emailIDInput.addEventListener("change", function(event) {
+emailIDInput.addEventListener("change", (event) => {
     validateForm();
 });
 
-form.addEventListener("submit", function(event) {
+form.addEventListener("submit", (event) => {
     validateForm(event);
 });
 
-emailCorrectResponse.addEventListener("click", function(event) {
+emailCorrectResponse.addEventListener("click", (event) => {
     t1.reverse();
 });
 
-emailIncorrectResponse.addEventListener("click", function(event) {
+emailIncorrectResponse.addEventListener("click", (event) => {
     t3.restart();
 });
 
@@ -78,7 +78,7 @@ t2.pause();
 t2.to(emailIncorrectResponse, {width: "2px", duration: 0})
     .to(emailIncorrectResponse, {width: "120px", duration: 0.5})
     .to(emailDiv, {x:"+=20", yoyo: true, repeat: 4, duration: 0.1}, ">")
-    .to(emailDiv, {x:"-=20", yoyo: true, repeat: 4, duration: 0.1}, "<")
+    .to(emailDiv, {x:"-=20", yoyo: true, repeat: 4, duration: 0.1}, ">")
     .set(emailDiv, {x: ""});
 
 t3.pause();
@@ -106,7 +106,7 @@ Set "emailIsValid" to false & "emailIsEmpty" to true to play "Incorrect animatio
 Replace this with your own emailValidation logic
 */
 const emailValidation = () => {
-    const emailIsValid = true;
+    const emailIsValid = false;
     const emailIsEmpty = false;
 
     return {emailIsValid, emailIsEmpty};
