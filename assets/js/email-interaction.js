@@ -1,7 +1,7 @@
 gsap.registerPlugin(CSSRulePlugin);
 
 const emailIsValid = false;
-const cssClasses = ["correct", "incorrect", "flex", "correct-before", "align-left"];
+const cssClasses = ["correct", "incorrect", "flex"];
 const errorMessages = ["Email", "Enter Email!", "Email format invalid"];
 
 const mainContainer = document.querySelector(".main-container");
@@ -80,7 +80,7 @@ t3.set(circleDiv, {display: "block"})
     .set(emailMessage, {innerText: errorMessages[0]})
     .to(emailIncorrectResponse, {right: "150%", duration: 0.4}, ">")
 
-    // reset set properties in GSAP
+    // reset the above set properties of GSAP
     .set(circleDiv, {display: ""})
     .set(circle1, {width: "", height: "", borderWidth: ""})
     .set(circle2, {width: "", height: "", borderWidth: ""})
