@@ -53,12 +53,13 @@ const clearCorrectAnimation = () => {
 }
 
 t1.pause();
-t1.set(emailCorrectResponse, {width: "", onReverseComplete: clearCorrectAnimation})
+t1.set(rule, { cssRule: {opacity: "",}, onReverseComplete: clearCorrectAnimation })
+    .set(emailCorrectResponse, {width: ""})
     .set(emailMessage, {innerText: errorMessages[0]})
-    .set(rule, { cssRule: {display: "none", opacity: 0} })
     .to(emailCorrectResponse, {width: "2px", duration: 0})
     .to(emailCorrectResponse, {width: "120px", duration: 0.5}, ">")
-    .fromTo(rule, { cssRule: {display: ""} }, { cssRule: {opacity: 1, duration: 0.4} }, ">");
+    .fromTo(rule, { cssRule: {opacity: 0} }, { cssRule: {opacity: 1, duration: 0.4} }, ">")
+    .set(rule, {cssRule: {opacity: ""}});
 
 t2.pause();
 t2.to(emailIncorrectResponse, {width: "2px", duration: 0})
