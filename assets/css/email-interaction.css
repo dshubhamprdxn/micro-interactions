@@ -73,6 +73,7 @@ form {
   left: 50px;
   color: grey;
   font-size: 18px;
+  pointer-events: none;
   transform: translate(0, -50%);
   transition: top 0.4s;
   user-select: none;

@@ -1,6 +1,6 @@
 gsap.registerPlugin(CSSRulePlugin);
 
-const emailIsValid = false;
+const emailIsValid = true;
 const cssClasses = ["correct", "incorrect", "flex"];
 const errorMessages = ["Email", "Enter Email!", "Email format invalid"];
 
@@ -17,7 +17,7 @@ const circleDiv = emailDiv.querySelector(".circle-div");
 const circle1 = circleDiv.querySelector(".circle-1");
 const circle2 = circleDiv.querySelector(".circle-2");
 
-const rule = CSSRulePlugin.getRule(".email-interactive-response.correct::before");
+const rule = CSSRulePlugin.getRule(".email-div .email-interactive-response.correct::before");
 
 const t1 = gsap.timeline();
 const t2 = gsap.timeline();
