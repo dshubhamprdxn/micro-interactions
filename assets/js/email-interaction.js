@@ -18,9 +18,9 @@ const circle2 = circleDiv.querySelector(".circle-2");
 
 const rule = CSSRulePlugin.getRule(".email-div .email-interactive-response.correct::before");
 
-const t1 = gsap.timeline();
-const t2 = gsap.timeline();
-const t3 = gsap.timeline();
+const t1 = gsap.timeline(); // Timeline for Playing/Clearing(Reverse) Correct animation
+const t2 = gsap.timeline(); // Timeline for Playing Incorrect animation
+const t3 = gsap.timeline(); // Timeline for Clearing Incorrect animation
 
 emailIDInput.addEventListener("change", function(event) {
     validateForm();
@@ -38,14 +38,17 @@ emailIncorrectResponse.addEventListener("click", function(event) {
     t3.restart();
 });
 
+// Removes "display: flex" from the "emailIncorrectResponse" element ie. Hides it
 const hideIncorrectSpan = () => {
     removeClass(emailIncorrectResponse, cssClasses[2]);
 }
 
+// Removes "display: flex" from the "emailCorrectResponse" element ie. Hides it
 const hideCorrectSpan = () => {
     removeClass(emailCorrectResponse, cssClasses[2]);
 }
 
+// Removes Incorrect CSS classes from emailIDInput, emailMessage and clears emailIDInput
 const clearIncorrectAnimation = (clearInput) => {
     if(clearInput) {
         emailIDInput.value = "";
@@ -54,6 +57,7 @@ const clearIncorrectAnimation = (clearInput) => {
     removeClass(emailMessage, cssClasses[1]);
 }
 
+// Removes Correct CSS classes from emailIDInput and clears emailIDInput
 const clearCorrectAnimation = (clearInput) => {
     if(clearInput) {
         emailIDInput.value = "";
@@ -96,6 +100,11 @@ t3.set(circleDiv, {display: "block"})
     .set(circle2, {width: "", height: "", borderWidth: ""})
     .set(emailIncorrectResponse, {width: "", right: "", onComplete: hideIncorrectSpan});
 
+/* 
+Set "emailIsValid" to true for the "Correct animation" and to false for "Incorrect animation".
+Set "emailIsValid" to false & "emailIsEmpty" to true to play "Incorrect animation" for empty input.
+Replace this with your own emailValidation logic
+*/
 const emailValidation = () => {
     const emailIsValid = true;
     const emailIsEmpty = false;
@@ -103,46 +112,47 @@ const emailValidation = () => {
     return {emailIsValid, emailIsEmpty};
 }
 
+// Play respective animation depending on "emailIsValid" & "emailIsEmpty" values
 const validateForm = (event) => {
     if(event != undefined) {
         event.preventDefault();
     }
     if(emailValidation().emailIsValid) {
         if(!hasClass(emailCorrectResponse, cssClasses[2])) {
-            if(hasClass(emailIncorrectResponse, cssClasses[2])) {
-                clearIncorrectAnimation(false);
-                hideIncorrectSpan();
-            }
             playCorrectAnimation();
         } 
     } else {
         if(!hasClass(emailIncorrectResponse, cssClasses[2])) {
-            if(hasClass(emailCorrectResponse, cssClasses[2])) {
-                clearCorrectAnimation(false);
-                hideCorrectSpan();
-            }
             playIncorrectAnimation(emailValidation().emailIsEmpty);
         }
     }
 }
 
+// Removes Incorrect animation if present and plays Correct animation if already not present
 const playCorrectAnimation = () => {
+    if(hasClass(emailIncorrectResponse, cssClasses[2])) {
+        clearIncorrectAnimation(false);
+        hideIncorrectSpan();
+    }
+
     removeClass(emailIDInput, cssClasses[1]);
     addClass(emailIDInput, cssClasses[0]);
-
     removeClass(emailMessage, cssClasses[1]);
-
     addClass(emailCorrectResponse, cssClasses[2]);
 
     t1.restart();
 }
 
+// Removes Correct animation if present and plays Incorrect animation if already not present
 const playIncorrectAnimation = (emailIsEmpty) => {
+    if(hasClass(emailCorrectResponse, cssClasses[2])) {
+        clearCorrectAnimation(false);
+        hideCorrectSpan();
+    }
+
     removeClass(emailIDInput, cssClasses[0]);
     addClass(emailIDInput, cssClasses[1]);
-
     addClass(emailMessage, cssClasses[1]);
-
     addClass(emailIncorrectResponse, cssClasses[2]);
 
     if(emailIsEmpty) {
