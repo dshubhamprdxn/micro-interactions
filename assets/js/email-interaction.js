@@ -38,8 +38,12 @@ emailIncorrectResponse.addEventListener("click", function(event) {
     t3.restart();
 });
 
-const hideIncorrectAnimation = () => {
+const hideIncorrectSpan = () => {
     removeClass(emailIncorrectResponse, cssClasses[2]);
+}
+
+const hideCorrectSpan = () => {
+    removeClass(emailCorrectResponse, cssClasses[2]);
 }
 
 const clearIncorrectAnimation = (clearInput) => {
@@ -55,16 +59,15 @@ const clearCorrectAnimation = (clearInput) => {
         emailIDInput.value = "";
     }
     removeClass(emailIDInput, cssClasses[0]);
-    removeClass(emailCorrectResponse, cssClasses[2]);
 }
 
 t1.pause();
-t1.set(rule, { cssRule: {opacity: "",}, onReverseComplete: clearCorrectAnimation, onReverseCompleteParams: [true] })
+t1.set(rule, { cssRule: {opacity: ""}, onReverseComplete: hideCorrectSpan })
     .set(emailCorrectResponse, {width: ""})
     .set(emailMessage, {innerText: errorMessages[0]})
     .to(emailCorrectResponse, {width: "2px", duration: 0})
     .to(emailCorrectResponse, {width: "120px", duration: 0.5}, ">")
-    .fromTo(rule, { cssRule: {opacity: 0} }, { cssRule: {opacity: 1, duration: 0.4} }, ">")
+    .fromTo(rule, { cssRule: {opacity: 0} }, { cssRule: {opacity: 1, duration: 0.4}, onReverseComplete: clearCorrectAnimation, onReverseCompleteParams: [true] }, ">")
     .set(rule, {cssRule: {opacity: ""}});
 
 t2.pause();
@@ -91,7 +94,7 @@ t3.set(circleDiv, {display: "block"})
     .set(circleDiv, {display: ""})
     .set(circle1, {width: "", height: "", borderWidth: ""})
     .set(circle2, {width: "", height: "", borderWidth: ""})
-    .set(emailIncorrectResponse, {width: "", right: "", onComplete: hideIncorrectAnimation});
+    .set(emailIncorrectResponse, {width: "", right: "", onComplete: hideIncorrectSpan});
 
 const emailValidation = () => {
     const emailIsValid = true;
@@ -108,7 +111,7 @@ const validateForm = (event) => {
         if(!hasClass(emailCorrectResponse, cssClasses[2])) {
             if(hasClass(emailIncorrectResponse, cssClasses[2])) {
                 clearIncorrectAnimation(false);
-                hideIncorrectAnimation();
+                hideIncorrectSpan();
             }
             playCorrectAnimation();
         } 
@@ -116,6 +119,7 @@ const validateForm = (event) => {
         if(!hasClass(emailIncorrectResponse, cssClasses[2])) {
             if(hasClass(emailCorrectResponse, cssClasses[2])) {
                 clearCorrectAnimation(false);
+                hideCorrectSpan();
             }
             playIncorrectAnimation(emailValidation().emailIsEmpty);
         }
