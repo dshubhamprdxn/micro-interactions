@@ -65,7 +65,7 @@ t1.set(button, {fontSize: 0})
 
 t2.to(button, {x: "110px", duration: 0.5})
     .set(rule, {cssRule: {display: "none"}})
-    .to(button, {width: "", padding: "0 50px", borderRadius: "30px", right: "50%", x: "50%", innerHTML: "thank you!", fontSize: "", duration: 0.5}, ">")
+    .to(button, {width: "", padding: "0 50px", borderRadius: "38px", right: "50%", x: "50%", innerHTML: "thank you!", fontSize: "", duration: 0.5}, ">")
     .to(emailInput, {width: "76px", right: "50%", x: "50%", duration: 0.5}, "<")
     .set(button, {clearProps: true})
     .set(emailInput, {clearProps: true, onComplete: removeSubmitListener});
