@@ -8,7 +8,7 @@ const emailInput = bouncyContainer.querySelector("input");
 const button = bouncyContainer.querySelector("button");
 
 const emailValidation = () => {
-    const emailIsValid = false; // true if email is valid, false otherwise
+    const emailIsValid = true; // true if email is valid, false otherwise
     return emailIsValid;
 }
 
