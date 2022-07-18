@@ -38,8 +38,7 @@ body {
   font-size: 20px;
 }
 .bouncy-container button {
-  width: 330px;
-  height: 100%;
+  height: 76px;
   padding: 0 50px;
   border: none;
   border-radius: 30px;
@@ -56,6 +55,7 @@ body {
   justify-content: center;
   text-transform: uppercase;
   transform: translateX(50%);
+  white-space: nowrap;
 }
 .bouncy-container button::before {
   content: "\f0e0";

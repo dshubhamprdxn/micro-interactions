@@ -1,11 +1,26 @@
 gsap.registerPlugin(CSSRulePlugin);
 
 const emailIsValid = true;
+const buttonClasses = ["promo-button", "email-submit-button"];
 
 const mainContainer = document.querySelector(".main-container");
 const bouncyContainer = mainContainer.querySelector(".bouncy-container");
 const emailInput = bouncyContainer.querySelector("input");
 const button = bouncyContainer.querySelector("button");
+
+const playTimeline1 = () => {
+    console.log("Playing Timeline 1");
+    t1.play();
+}
+
+const playTimeline2 = () => {
+    if(emailIsValid) {
+        console.log("Playing Timeline 2");
+        t2.play();
+    }
+}
+
+button.addEventListener("click", playTimeline1, true);
 
 const rule = CSSRulePlugin.getRule(".bouncy-container button::before");
 
@@ -15,14 +30,15 @@ t1.pause();
 t2.pause();
 
 const changeToSubmitState = () => {
-    removeClass(button, "promo-button");
-    button.removeEventListener("click");
-    addClass(button, "email-submit-button");
-    button.addEventListener("click", (event) => {
-        if(emailIsValid) {
-            t2.play();
-        }
-    });
+    removeClass(button, buttonClasses[0]);
+    button.removeEventListener("click", playTimeline1, true);
+    addClass(button, buttonClasses[1]);
+    button.addEventListener("click", playTimeline2, true);
+}
+
+const removeSubmitListener = () => {
+    removeClass(button, buttonClasses[1]);
+    button.removeEventListener("click", playTimeline2, true);
 }
 
 t1.set(button, {fontSize: 0})
@@ -47,6 +63,9 @@ t1.set(button, {fontSize: 0})
     .set(button, {x: ""})
     .set(emailInput, {x: "", onComplete: changeToSubmitState});
 
-button.addEventListener("click", (event) => {
-    t1.play();
-});
+t2.to(button, {x: "110px", duration: 0.5})
+    .set(rule, {cssRule: {display: "none"}})
+    .to(button, {width: "", padding: "0 50px", borderRadius: "30px", right: "50%", x: "50%", innerHTML: "thank you!", fontSize: "", duration: 0.5}, ">")
+    .to(emailInput, {width: "76px", right: "50%", x: "50%", duration: 0.5}, "<")
+    .set(button, {clearProps: true})
+    .set(emailInput, {clearProps: true, onComplete: removeSubmitListener});
