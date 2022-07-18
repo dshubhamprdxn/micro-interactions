@@ -57,6 +57,8 @@ body {
         transform: translateX(50%);
         white-space: nowrap;
 
+        &:hover { cursor: pointer; }
+
         &::before {
             content: "\f0e0";
             display: none;

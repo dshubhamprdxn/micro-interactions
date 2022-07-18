@@ -57,6 +57,9 @@ body {
   transform: translateX(50%);
   white-space: nowrap;
 }
+.bouncy-container button:hover {
+  cursor: pointer;
+}
 .bouncy-container button::before {
   content: "\f0e0";
   display: none;
