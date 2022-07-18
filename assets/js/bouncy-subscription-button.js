@@ -26,12 +26,15 @@ button.addEventListener("click", playTimeline1, true);
 
 const rule = CSSRulePlugin.getRule(".bouncy-container button::before");
 
-const t1 = gsap.timeline(); // Bouncy Subscription button to Email Field animation
-const t2 = gsap.timeline(); // After Email submit to 'Thank You' button animation 
+const t1 = gsap.timeline(); // 'Bouncy Subscription button' to 'Email Input Field' animation
+const t2 = gsap.timeline(); // After Email submit to 'Thank You button' animation
 t1.pause();
 t2.pause();
 
-// After Timeline 1 completes change 'Promo button' to 'Email submit button'(Change classes & event listeners)
+/* 
+    After Timeline 1 completes change 'Promo button' to 'Email submit button'
+    (ie. Change classes & event listeners)
+*/
 const changeToSubmitState = () => {
     removeClass(button, buttonClasses[0]);
     button.removeEventListener("click", playTimeline1, true);
@@ -39,7 +42,7 @@ const changeToSubmitState = () => {
     button.addEventListener("click", playTimeline2, true);
 }
 
-// Remove Submit click listener & class after Timeline 2 completes
+// Remove 'Email Submit' click listener & class after Timeline 2 completes
 const removeSubmitListener = () => {
     removeClass(button, buttonClasses[1]);
     button.removeEventListener("click", playTimeline2, true);
