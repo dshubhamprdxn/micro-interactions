@@ -1,6 +1,5 @@
 gsap.registerPlugin(CSSRulePlugin);
 
-const emailIsValid = true; // true if email is valid, false otherwise
 const buttonClasses = ["promo-button", "email-submit-button"];
 
 const mainContainer = document.querySelector(".main-container");
@@ -8,17 +7,23 @@ const bouncyContainer = mainContainer.querySelector(".bouncy-container");
 const emailInput = bouncyContainer.querySelector("input");
 const button = bouncyContainer.querySelector("button");
 
+const emailValidation = () => {
+    const emailIsValid = false; // true if email is valid, false otherwise
+    return emailIsValid;
+}
+
 // Event Listener for Promo button
 const playTimeline1 = () => {
-    console.log("Playing Timeline 1");
     t1.play();
 }
 
 // Event Listener for Email Submit button
-const playTimeline2 = () => {
-    if(emailIsValid) {
-        console.log("Playing Timeline 2");
+const playTimeline2 = (event) => {
+    if(emailValidation()) {
         t2.play();
+    } else {
+        event.preventDefault();
+        // Else code
     }
 }
 
