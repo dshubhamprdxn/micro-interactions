@@ -1,5 +1,7 @@
 gsap.registerPlugin(CSSRulePlugin);
 
+const emailIsValid = true;
+
 const mainContainer = document.querySelector(".main-container");
 const bouncyContainer = mainContainer.querySelector(".bouncy-container");
 const emailInput = bouncyContainer.querySelector("input");
@@ -8,7 +10,20 @@ const button = bouncyContainer.querySelector("button");
 const rule = CSSRulePlugin.getRule(".bouncy-container button::before");
 
 const t1 = gsap.timeline();
+const t2 = gsap.timeline();
 t1.pause();
+t2.pause();
+
+const changeToSubmitState = () => {
+    removeClass(button, "promo-button");
+    button.removeEventListener("click");
+    addClass(button, "email-submit-button");
+    button.addEventListener("click", (event) => {
+        if(emailIsValid) {
+            t2.play();
+        }
+    });
+}
 
 t1.set(button, {fontSize: 0})
     .set(emailInput, {display: "block"})
@@ -30,7 +45,7 @@ t1.set(button, {fontSize: 0})
     .to(button, {x: "-=5", duration: 0.15}, "<")
 
     .set(button, {x: ""})
-    .set(emailInput, {x: ""});
+    .set(emailInput, {x: "", onComplete: changeToSubmitState});
 
 button.addEventListener("click", (event) => {
     t1.play();
