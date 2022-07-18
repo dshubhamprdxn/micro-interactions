@@ -56,8 +56,12 @@ body {
   text-transform: uppercase;
   transform: translateX(50%);
   white-space: nowrap;
+  cursor: default;
 }
-.bouncy-container button:hover {
+.bouncy-container button.promo-button:hover {
+  cursor: pointer;
+}
+.bouncy-container button.email-submit-button:hover {
   cursor: pointer;
 }
 .bouncy-container button::before {

@@ -56,8 +56,10 @@ body {
         text-transform: uppercase;
         transform: translateX(50%);
         white-space: nowrap;
+        cursor: default;
 
-        &:hover { cursor: pointer; }
+        &.promo-button:hover { cursor: pointer; }
+        &.email-submit-button:hover { cursor: pointer; }
 
         &::before {
             content: "\f0e0";
