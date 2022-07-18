@@ -4,7 +4,7 @@ const buttonClasses = ["promo-button", "email-submit-button"];
 
 const mainContainer = document.querySelector(".main-container");
 const bouncyContainer = mainContainer.querySelector(".bouncy-container");
-const emailInput = bouncyContainer.querySelector("input");
+const emailInput = bouncyContainer.querySelector(".bouncy-email-input");
 const button = bouncyContainer.querySelector("button");
 
 const emailValidation = () => {
