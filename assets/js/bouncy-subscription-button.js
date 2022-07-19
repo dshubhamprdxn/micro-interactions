@@ -3,6 +3,7 @@ gsap.registerPlugin(CSSRulePlugin);
 const buttonClasses = ["promo-button", "email-submit-button"];
 
 const mainContainer = document.querySelector(".main-container");
+const form = mainContainer.querySelector("form");
 const bouncyContainer = mainContainer.querySelector(".bouncy-container");
 const emailInput = bouncyContainer.querySelector(".bouncy-email-input");
 const button = bouncyContainer.querySelector("button");
@@ -19,10 +20,10 @@ const playTimeline1 = () => {
 
 // Event Listener for Email Submit button
 const playTimeline2 = (event) => {
+    event.preventDefault();
     if(emailValidation()) {
         t2.play();
     } else {
-        event.preventDefault();
         // Else code
     }
 }
@@ -44,13 +45,15 @@ const changeToSubmitState = () => {
     removeClass(button, buttonClasses[0]);
     button.removeEventListener("click", playTimeline1, true);
     addClass(button, buttonClasses[1]);
-    button.addEventListener("click", playTimeline2, true);
+    button.setAttribute("type", "submit");
+    form.addEventListener("submit", playTimeline2, true);
 }
 
 // Remove 'Email Submit' click listener & class after Timeline 2 completes
 const removeSubmitListener = () => {
     removeClass(button, buttonClasses[1]);
-    button.removeEventListener("click", playTimeline2, true);
+    button.setAttribute("type", "button");
+    form.removeEventListener("submit", playTimeline2, true);
 }
 
 t1.set(button, {fontSize: 0})
