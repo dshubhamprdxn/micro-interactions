@@ -1,6 +1,9 @@
 gsap.registerPlugin(CSSRulePlugin);
 
+const resetToStartState = true;
+
 const buttonClasses = ["promo-button", "email-submit-button"];
+const buttonValues = ["get a promo code", "thank you!"];
 
 const mainContainer = document.querySelector(".main-container");
 const form = mainContainer.querySelector("form");
@@ -15,20 +18,27 @@ const emailValidation = () => {
 
 // Event Listener for Promo button
 const playTimeline1 = () => {
-    t1.play();
+    t1.restart();
 }
 
 // Event Listener for Email Submit button
 const playTimeline2 = (event) => {
     event.preventDefault();
     if(emailValidation()) {
-        t2.play();
+        t2.restart();
     } else {
         // Else code
     }
 }
 
-button.addEventListener("click", playTimeline1, true);
+// Resets to Start state
+const resetToStart = () => {
+    changeElementInnerText(button, buttonValues[0]);
+    addClass(button, buttonClasses[0]);
+    button.addEventListener("click", playTimeline1, true);
+}
+
+resetToStart();
 
 const rule = CSSRulePlugin.getRule(".bouncy-container button::before");
 
@@ -54,6 +64,14 @@ const removeSubmitListener = () => {
     removeClass(button, buttonClasses[1]);
     button.setAttribute("type", "button");
     form.removeEventListener("submit", playTimeline2, true);
+
+    // Initialize to Start state
+    if(resetToStartState) {
+        const timer = setTimeout(() => {
+            clearTimeout(timer);
+            resetToStart();
+        }, 5000);
+    }
 }
 
 t1.set(button, {fontSize: 0})
@@ -80,7 +98,7 @@ t1.set(button, {fontSize: 0})
 
 t2.to(button, {x: "110px", duration: 0.5})
     .set(rule, {cssRule: {display: "none"}})
-    .to(button, {width: "", padding: "0 50px", borderRadius: "38px", right: "50%", x: "50%", innerHTML: "thank you!", fontSize: "", duration: 0.5}, ">")
+    .to(button, {width: "", padding: "0 50px", borderRadius: "38px", right: "50%", x: "50%", innerHTML: buttonValues[1], fontSize: "", duration: 0.5}, ">")
     .to(emailInput, {width: "76px", right: "50%", x: "50%", duration: 0.5}, "<")
-    .set(button, {clearProps: true})
-    .set(emailInput, {clearProps: true, onComplete: removeSubmitListener});
+    .to(button, {clearProps: true}, ">")
+    .to(emailInput, {clearProps: true, onComplete: removeSubmitListener}, ">");
