@@ -1,6 +1,6 @@
 gsap.registerPlugin(CSSRulePlugin);
 
-const resetToStartState = true;
+const resetToStartState = false;
 
 const buttonClasses = ["promo-button", "email-submit-button"];
 const buttonValues = ["get a promo code", "thank you!"];
