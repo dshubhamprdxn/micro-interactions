@@ -37,6 +37,11 @@ body {
         font-size: 20px;
     }
 
+    // Get rid of Chrome's default styling for saved values
+    .bouncy-email-input:-webkit-autofill, .bouncy-email-input:-webkit-autofill:focus {
+        transition: background-color 600000s 0s, color 600000s 0s;
+    }
+
     button {
         height: 76px;
         padding: 0 50px;

@@ -37,6 +37,9 @@ body {
   color: grey;
   font-size: 20px;
 }
+.bouncy-container .bouncy-email-input:-webkit-autofill, .bouncy-container .bouncy-email-input:-webkit-autofill:focus {
+  transition: background-color 600000s 0s, color 600000s 0s;
+}
 .bouncy-container button {
   height: 76px;
   padding: 0 50px;
