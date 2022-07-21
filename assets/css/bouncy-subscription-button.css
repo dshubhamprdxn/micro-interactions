@@ -56,6 +56,8 @@ body {
   text-transform: uppercase;
   transform: translateX(50%);
   white-space: nowrap;
+}
+.bouncy-container button:hover {
   cursor: default;
 }
 .bouncy-container button.promo-button:hover {
