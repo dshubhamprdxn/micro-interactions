@@ -70,7 +70,7 @@ const removeSubmitListener = () => {
         const timer = setTimeout(() => {
             clearTimeout(timer);
             resetToStart();
-        }, 5000);
+        }, 3000);
     }
 }
 
@@ -93,12 +93,11 @@ t1.set(button, {fontSize: 0})
     .to(emailInput, {width: "450px", duration: 0.15}, ">")
     .to(button, {x: "-=5", duration: 0.15}, "<")
 
-    .set(button, {x: ""})
-    .set(emailInput, {x: "", onComplete: changeToSubmitState});
+    .set([button, emailInput], {x: "", onComplete: changeToSubmitState});
 
 t2.to(button, {x: "110px", duration: 0.5})
     .set(rule, {cssRule: {display: "none"}})
     .to(button, {width: "", padding: "0 50px", borderRadius: "38px", right: "50%", x: "50%", innerHTML: buttonValues[1], fontSize: "", duration: 0.5}, ">")
     .to(emailInput, {width: "76px", right: "50%", x: "50%", duration: 0.5}, "<")
-    .to(button, {clearProps: true}, ">")
-    .to(emailInput, {clearProps: true, onComplete: removeSubmitListener}, ">");
+
+    .to([button, emailInput], {clearProps: true, onComplete: removeSubmitListener}, ">");
