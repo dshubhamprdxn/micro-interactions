@@ -37,6 +37,10 @@ body {
   color: grey;
   font-size: 20px;
 }
+.bouncy-container .bouncy-email-input:-webkit-autofill,
+.bouncy-container .bouncy-email-input:-webkit-autofill:focus {
+  transition: background-color 600000s 0s, color 600000s 0s;
+}
 .bouncy-container button {
   height: 76px;
   padding: 0 50px;
@@ -56,6 +60,8 @@ body {
   text-transform: uppercase;
   transform: translateX(50%);
   white-space: nowrap;
+}
+.bouncy-container button:hover {
   cursor: default;
 }
 .bouncy-container button.promo-button:hover {
@@ -71,4 +77,5 @@ body {
   font-family: "Font Awesome 6 Free";
   font-size: 20px;
   font-weight: 900;
+  white-space: normal;
 }
