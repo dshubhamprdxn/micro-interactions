@@ -1,8 +1,12 @@
 gsap.registerPlugin(CSSRulePlugin);
 
+const resetToStartState = false;
+
 const buttonClasses = ["promo-button", "email-submit-button"];
+const buttonValues = ["get a promo code", "thank you!"];
 
 const mainContainer = document.querySelector(".main-container");
+const form = mainContainer.querySelector("form");
 const bouncyContainer = mainContainer.querySelector(".bouncy-container");
 const emailInput = bouncyContainer.querySelector(".bouncy-email-input");
 const button = bouncyContainer.querySelector("button");
@@ -14,20 +18,27 @@ const emailValidation = () => {
 
 // Event Listener for Promo button
 const playTimeline1 = () => {
-    t1.play();
+    t1.restart();
 }
 
 // Event Listener for Email Submit button
 const playTimeline2 = (event) => {
+    event.preventDefault();
     if(emailValidation()) {
-        t2.play();
+        t2.restart();
     } else {
-        event.preventDefault();
         // Else code
     }
 }
 
-button.addEventListener("click", playTimeline1, true);
+// Resets to Start state
+const resetToStart = () => {
+    changeElementInnerText(button, buttonValues[0]);
+    addClass(button, buttonClasses[0]);
+    button.addEventListener("click", playTimeline1, true);
+}
+
+resetToStart();
 
 const rule = CSSRulePlugin.getRule(".bouncy-container button::before");
 
@@ -44,13 +55,23 @@ const changeToSubmitState = () => {
     removeClass(button, buttonClasses[0]);
     button.removeEventListener("click", playTimeline1, true);
     addClass(button, buttonClasses[1]);
-    button.addEventListener("click", playTimeline2, true);
+    button.setAttribute("type", "submit");
+    form.addEventListener("submit", playTimeline2, true);
 }
 
 // Remove 'Email Submit' click listener & class after Timeline 2 completes
 const removeSubmitListener = () => {
     removeClass(button, buttonClasses[1]);
-    button.removeEventListener("click", playTimeline2, true);
+    button.setAttribute("type", "button");
+    form.removeEventListener("submit", playTimeline2, true);
+
+    // Initialize to Start state
+    if(resetToStartState) {
+        const timer = setTimeout(() => {
+            clearTimeout(timer);
+            resetToStart();
+        }, 3000);
+    }
 }
 
 t1.set(button, {fontSize: 0})
@@ -72,12 +93,11 @@ t1.set(button, {fontSize: 0})
     .to(emailInput, {width: "450px", duration: 0.15}, ">")
     .to(button, {x: "-=5", duration: 0.15}, "<")
 
-    .set(button, {x: ""})
-    .set(emailInput, {x: "", onComplete: changeToSubmitState});
+    .set([button, emailInput], {x: "", onComplete: changeToSubmitState});
 
 t2.to(button, {x: "110px", duration: 0.5})
     .set(rule, {cssRule: {display: "none"}})
-    .to(button, {width: "", padding: "0 50px", borderRadius: "38px", right: "50%", x: "50%", innerHTML: "thank you!", fontSize: "", duration: 0.5}, ">")
+    .to(button, {width: "", padding: "0 50px", borderRadius: "38px", right: "50%", x: "50%", innerHTML: buttonValues[1], fontSize: "", duration: 0.5}, ">")
     .to(emailInput, {width: "76px", right: "50%", x: "50%", duration: 0.5}, "<")
-    .set(button, {clearProps: true})
-    .set(emailInput, {clearProps: true, onComplete: removeSubmitListener});
+
+    .to([button, emailInput], {clearProps: true, onComplete: removeSubmitListener}, ">");
