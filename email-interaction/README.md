@@ -1,0 +1,3 @@
+Codepen link: https://codepen.io/msanjeetaxioned/pen/mdxOOod
+
+Write your Email Validation logic in the 'emailValidation()' function. It should also check for if the email is empty. The function should return an object having two boolean values. 'emailIsValid' & 'emailIsEmpty'. 'emailIsValid' => true if email is valid and false otherwise. Similarly 'emailIsEmpty' => true if email field was left empty.
